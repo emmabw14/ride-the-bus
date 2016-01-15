@@ -25,7 +25,7 @@ class RTBGame:
         self.__player.forget()
         self.__deck = deck.Deck(True)
         self.__board = [self.__deck.draw() for _ in xrange(4)]
-        ndrinks, nrounds = 0, 0
+        ndrinks, nrounds, nhb = 0, 0, 0
         while not self.__deck.is_empty():
             nrounds += 1
             # Play first round
@@ -53,10 +53,11 @@ class RTBGame:
             c4 = self.__discard(4)
             if g4 != c4.suit():
                 ndrinks += 8
+                nhb += 1
                 continue
             else:
                 break
-        return ndrinks, nrounds
+        return ndrinks, nrounds, nhb
     # Return number of drinks taken for each of n games played
     def play_games(self, n):
         return [self.play_game()[0] for _ in xrange(n)]
