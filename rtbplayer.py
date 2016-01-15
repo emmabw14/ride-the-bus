@@ -57,7 +57,7 @@ class RTBPlayer:
     # range of game 1 and game 2 cards
     def guess_3(self, c1, c2):
         if self.__skill == -1:
-            return True
+            return True if (runif() > 0.5) else False
         (lo, hi) = (c1, c2) if (c1 < c2) else (c2, c1)
         seen_between = sum(self.__snums[lo.num():hi.num()-1])
         nbetween = max(0, 4 * (hi.num() - lo.num() - 1) - seen_between)
